@@ -11,7 +11,7 @@ describe('Handle Dropdowns', () =>{
         .should('have.value','Italy')
     })
 
-    it('drobdown without select', ()=>{
+    it('dropdown without select', ()=>{
 
         cy.visit("https://www.dummyticket.com/dummy-ticket-for-visa-application/")
 
@@ -32,7 +32,7 @@ describe('Handle Dropdowns', () =>{
         cy.get('.suggestions-dropdown').contains('Delhi Heights').click()
     })
 
-    it('dynamic dropdown', () =>{
+    it.only('dynamic dropdown', () =>{
 
         cy.visit("https://www.google.com/")
 

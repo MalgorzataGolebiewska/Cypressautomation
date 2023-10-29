@@ -45,7 +45,7 @@ describe('Alerts', () =>{
     })
 
     //3) Javascript Prompt Alert: It will have some text with text box for user input along with "ok"
-    it('JS prompt alert',()=>{
+    it.only('JS prompt alert',()=>{
         cy.visit('https://the-internet.herokuapp.com/javascript_alerts')
         
         cy.window().then((win)=>{
@@ -61,7 +61,7 @@ describe('Alerts', () =>{
     })
 
     //4) Authenticated Alert
-    it.only('Authenticated alert',()=>{
+    it('Authenticated alert',()=>{
         
         //approach 1
         cy.visit('https://the-internet.herokuapp.com/basic_auth',{auth: 

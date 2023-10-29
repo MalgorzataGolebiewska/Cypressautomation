@@ -12,6 +12,7 @@ describe('Handle Tables', (()=>{
 
         cy.get("#menu-customer").click(); // customers main menu
         cy.get("#menu-customer>ul>li:first-child").click(); // customers child item
+
     })
 
     it.skip('Check Number Rows & Columns',()=>{
@@ -47,16 +48,35 @@ describe('Handle Tables', (()=>{
 
     it.only('Pagination',()=>{
 
-        //find total number of pages
-        let totalPages;
-        cy.get("div[class='col-sm-6 text-end']").then( (e)=>{
-            let mytext=e.text(); //Showing 1 to 10 of 15994 (1600 Pages)
-            totalPages=mytext.substring(mytext.indexOf("(")+1,mytext.indexOf("Pages")-1);
-            cy.log("Total number of pages in table -> "+totalPages);
-        })
+        // //find total number of pages
+        // let totalPages;
+        // cy.get("div[class='col-sm-6 text-end']").then( (e)=>{
+        //     let mytext=e.text(); //Showing 1 to 10 of 15994 (1600 Pages)
+        //     totalPages=mytext.substring(mytext.indexOf("(")+1,mytext.indexOf("Pages")-1);
+        //     cy.log("Total number of pages in table -> "+totalPages);
+        // })
 
-        
+        let totalPages=5;
 
+        for(let p=1;p<totalPages;p++)
+        {
+            if(totalPages>1)
+            {
+                cy.log("Active pages==="+p);
+
+                cy.get("ul[class='pagination']>li:nth-child("+p+")").click();
+                cy.wait(5000);
+
+                cy.get("table[class='table table-bordered table-hover']>tbody>tr")
+                .each( ($row, index, $rows)=>{
+                    cy.wrap($row).within( ()=>{
+                        cy.get('td:nth-child(3)').then((e)=>{
+                            cy.log(e.text()); //Email
+                        })
+                    })
+                })
+            }
+        }
 
     })
 }))
