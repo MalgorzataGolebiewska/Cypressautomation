@@ -48,14 +48,20 @@ describe("Mouse Operations", ()=> {
         cy.iframe('#iframeResult').find('#field2').should('have.value','Hello World!');
     })
 
-    it.only('Drag and Drop usign plugin', () => {
+    it('Drag and Drop usign plugin', () => {
 
-        cy.visit("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html")
-        cy.get('#box6').should('be.visible')
-        cy.get('#box106').should('be.visible')
-        cy.wait(5000);
-        cy.get('#box6').drag('#box106');
+        cy.visit("https://kitchen.applitools.com/ingredients/drag-and-drop");
+        cy.wait(3000);
 
+        cy.get('#menu-fried-chicken').drag('#plate-items');
+        cy.get('#plate-items').should('have.text','Fried Chicken');
+    })
 
+    it.only('Scrolling Page', () => {
+
+        cy.visit('https://www.countries-ofthe-world.com/flags-of-the-world.html');
+
+        cy.get(':nth-child(51) > :nth-child(1) > img').scrollIntoView({duration:3000});
+        cy.get(':nth-child(51) > :nth-child(1) > img').should('be.visible');
     })
 })
