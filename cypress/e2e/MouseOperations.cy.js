@@ -61,7 +61,14 @@ describe("Mouse Operations", ()=> {
 
         cy.visit('https://www.countries-ofthe-world.com/flags-of-the-world.html');
 
+
+        //Denmark flag
         cy.get(':nth-child(51) > :nth-child(1) > img').scrollIntoView({duration:3000});
         cy.get(':nth-child(51) > :nth-child(1) > img').should('be.visible');
+
+        cy.get(':nth-child(2) > tbody > :nth-child(5) > :nth-child(1) > img').scrollIntoView({duration:3000});
+        cy.get(':nth-child(2) > tbody > :nth-child(5) > :nth-child(1) > img').should('be.visible');
+
+        cy.get('#footer').scrollIntoView({duration:3000});
     })
 })
