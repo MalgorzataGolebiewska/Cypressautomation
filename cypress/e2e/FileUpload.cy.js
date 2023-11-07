@@ -20,11 +20,24 @@ describe('File Uploads',(()=>{
         cy.get("div[class='example'] h3").should('have.text','File Uploaded!');
     })
 
-     it.only('File Upload - Drag and drop',()=>{
+
+     it('File Upload - Drag and drop',()=>{
 
         cy.visit('https://the-internet.herokuapp.com/upload');
         cy.get('#drag-drop-upload').attachFile('intj.png', {subjectType:'drag-n-drop'});
         cy.wait(5000);
         cy.get('#drag-drop-upload > .dz-preview > .dz-details > .dz-filename > span').contains('intj.png');
     })
+   
+    it.only('Multiple Files Upload', () =>{
+
+        cy.visit('https://davidwalsh.name/demo/multiple-file-upload.php');
+        cy.get('#filesToUpload').attachFile(['intj.png','windows.png']);
+        cy.wait(3000);
+
+        cy.get(':nth-child(6) > strong').should('contain.text','Files You Selected:');
+
+    })
+
+  
 }))
