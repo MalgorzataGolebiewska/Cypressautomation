@@ -68,3 +68,11 @@ Cypress.Commands.overwriteQuery(
       return contains0(filter, text, userOptions)
     }
   )
+
+  // Custom command for login
+
+  Cypress.Commands.add("loginApp", (email,password)=>{
+    cy.get('#Email').type(email);
+    cy.get('#Password').type(password);
+    cy.get("button[class='button-1 login-button']").click();
+  })
