@@ -16,13 +16,14 @@ describe('Custom commands', () =>{
         cy.get("div[class='product-name'] h1").should('have.text','Apple MacBook Pro 13-inch');
     })
 
-    it.only("Login command", ()=>{
+    it("Login command", ()=>{
 
         cy.visit("https://demo.nopcommerce.com/");
 
         cy.clickLink("Log in");
         cy.loginApp("testing@gmail.com","test123");
 
+        cy.wait(3000);
         cy.get('.ico-account').should('have.text','My account');
 
     })
